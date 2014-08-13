@@ -1,0 +1,9 @@
+name: BetterBoots
+main: me.drkmatr1984.BetterBoots.BetterBoots
+version: 0.1
+author: Nicolas Shreiner
+description: Craft some Tussin powered boots of Awesome! Each Type gives you new Abilities!
+permissions:
+    BetterBoots.flightboots:
+        description: Allows the user to fly with the FlightBoots
+        default: op
