@@ -4,6 +4,9 @@ version: 0.1
 author: Nicolas Shreiner
 description: Craft some Tussin powered boots of Awesome! Each Type gives you new Abilities!
 permissions:
-    BetterBoots.flightboots:
+    BetterBoots.flightboots.use:
         description: Allows the user to fly with the FlightBoots
+        default: op
+    BetterBoots.flightboots.craft:
+        description: Allows the user to craft the FlightBoots
         default: op

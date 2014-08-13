@@ -1,4 +1,4 @@
-package ro.thehunters.digi.recipeUtil;
+package me.drkmatr1984.BetterBoots.Util;
 
 import java.util.Arrays;
 import java.util.List;

@@ -1,5 +1,6 @@
 package me.drkmatr1984.BetterBoots;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.logging.Logger;
 
@@ -9,11 +10,11 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 
-
 public class BetterBoots extends JavaPlugin
 {
     public static BetterBoots plugin;
 	public static FileConfiguration c;
+	public static File language;
 	private Logger log = getLogger();
 	PluginManager pm = getServer().getPluginManager();
 
@@ -23,9 +24,10 @@ public class BetterBoots extends JavaPlugin
 		initConfig();
 		initBootsRecipes();
 		pm.registerEvents(new me.drkmatr1984.BetterBoots.Listeners.FlightListener(), this);
+		pm.registerEvents(new me.drkmatr1984.BetterBoots.Listeners.SprintListener(), this);
 		pm.registerEvents(new me.drkmatr1984.BetterBoots.Listeners.DurabilityListener(), this);
 		pm.registerEvents(new me.drkmatr1984.BetterBoots.Listeners.Checkers(), this);
-		if(c.getBoolean("ENABLEMETRICS") == true)
+		if(ConfigAccessor.EnableMetrics == true)
 			initMetrics(this);
 		getServer().getConsoleSender().sendMessage("§F[BetterBoots] Loading BetterBoots, Powered by §5Tussin§F!§r");
 		getServer().getLogger().info("[BetterBoots] Loaded");
@@ -43,9 +45,14 @@ public class BetterBoots extends JavaPlugin
 	}
 	
 	private void initConfig() {
-		c = getConfig();
-		c.options().copyDefaults(true);
-		saveConfig();
+		saveDefaultConfig();
+    	c = this.getConfig();
+    	ConfigAccessor.LoadConfiguration(c);
+	}
+	
+	private void deInitConfig(){
+		ConfigAccessor.SaveConfiguration(c);
+		this.saveConfig();
 	}
 	
 	private void initBootsRecipes()
@@ -56,6 +63,7 @@ public class BetterBoots extends JavaPlugin
     
 	public void onDisable()
     {
+		deInitConfig();
 		getServer().getConsoleSender().sendMessage("§F[BetterBoots] Disabling BetterBoots, §5Tussin §Fwore off!§r");
 		getServer().getLogger().info("[BetterBoots] Unloaded");
     }

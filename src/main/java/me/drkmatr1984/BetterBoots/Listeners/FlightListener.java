@@ -1,12 +1,13 @@
 package me.drkmatr1984.BetterBoots.Listeners;
-import org.bukkit.ChatColor;
-import org.bukkit.GameMode;
+import me.drkmatr1984.BetterBoots.ConfigAccessor;
+import me.drkmatr1984.BetterBoots.Permissions;
+
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
-import org.bukkit.permissions.Permission;
+import org.bukkit.inventory.ItemStack;
 
 
 public class FlightListener implements Listener
@@ -15,22 +16,26 @@ public class FlightListener implements Listener
     public void onFlight(PlayerMoveEvent event)
 	{
 		Player p = event.getPlayer();
-		if((p.hasPermission("essentials.fly")) || (p.getGameMode() == GameMode.CREATIVE)){
-			event.setCancelled(false);
-		}else if(!(p.hasPermission("essentials.fly")) || !(p.getGameMode() == GameMode.CREATIVE)){
-		if((p.getEquipment().getBoots() != null) && (p.getEquipment().getBoots().getType().equals(Material.DIAMOND_BOOTS)) && (p.getEquipment().getBoots().getItemMeta().getDisplayName().contains("FlightBoots")) && (p.getEquipment().getBoots().hasItemMeta()) && (!(p.getEquipment().getBoots().getItemMeta().getLore().isEmpty()) && (p.hasPermission(new Permission("BetterBoots.flightboots"))))){
-					String i = me.drkmatr1984.BetterBoots.BetterBoots.c.getString("FLIGHTSPEED");
-    				float speed = Float.parseFloat(i);
-    				p.setAllowFlight(true);
-    				p.setFlySpeed(speed);
-			}else{
-				p.setAllowFlight(false);
-				p.setFlying(false);
-	    	}
-		if((p.getEquipment().getBoots() != null) && (p.getEquipment().getBoots().getType().equals(Material.DIAMOND_BOOTS)) && (p.getEquipment().getBoots().getItemMeta().getDisplayName().contains("FlightBoots")) && (p.getEquipment().getBoots().hasItemMeta()) && ((p.getEquipment().getBoots().getItemMeta().getLore().isEmpty()) && (p.hasPermission(new Permission("BetterBoots.flightboots"))))){
-			p.sendMessage(ChatColor.RED + "Ya can't bootleg these boots, brosky!" + ChatColor.RESET);
+		ItemStack is = p.getEquipment().getBoots();
+		if((is != null) && (is.getType() != Material.AIR)){
+			if(is.getType().equals(Material.DIAMOND_BOOTS)){
+				if(Checkers.canFlyCheck(p)){
+					event.setCancelled(false);
+				}else if(!(Checkers.canFlyCheck(p))){
+					if(is != null){
+						if(Checkers.isFlightBoots(is) && (p.hasPermission(Permissions.canHasFlightBoots))){
+								String i = ConfigAccessor.FlightSpeed.toString();
+								float speed = Float.parseFloat(i);
+								p.setAllowFlight(true);
+								p.setFlySpeed(speed);
+							}else{
+								p.setAllowFlight(false);
+								p.setFlying(false);
+							}
+					}
+				}
+			}
 		}
-		}	
 	}	
 }    
 
