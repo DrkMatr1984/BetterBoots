@@ -1,5 +1,5 @@
 BetterBoots
-
+===========
 Craft boots that give you different Abilities! These boots deteriorate with usage, requiring one to craft them again. There will be 5 different kinds of boots:
 
 FlightBoots: These boots will give the wearer the ability to fly while worn! Speed and whether or not to use Built-in Durability are configurable in the config. (Diamond)
