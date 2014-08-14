@@ -10,12 +10,13 @@ import me.drkmatr1984.BetterBoots.Permissions;
 /*This class checks when player is crafting if they have to permission to craft different types of BetterBoots*/	
 public class CraftPermListener implements Listener{
 	@EventHandler
-	public void Craft(CraftItemEvent event) {
+	public void onCraft(CraftItemEvent event) {
 		Player p = (Player) event.getWhoClicked();
-		ItemStack is = event.getInventory().getContents()[ 0];
+		ItemStack is = event.getInventory().getResult();
 		if(Checkers.isBoots(is)){
 			if(!(CraftBootsCheck(p, is))){
 				event.setCancelled(true);
+				return;
 			}
 		}
 		event.setCancelled(false);

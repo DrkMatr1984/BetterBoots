@@ -25,11 +25,15 @@ public class BetterBoots extends JavaPlugin
 		initBootsRecipes();
 		pm.registerEvents(new me.drkmatr1984.BetterBoots.Listeners.FlightListener(), this);
 		pm.registerEvents(new me.drkmatr1984.BetterBoots.Listeners.SprintListener(), this);
+		pm.registerEvents(new me.drkmatr1984.BetterBoots.Listeners.SneakListener(), this);
 		pm.registerEvents(new me.drkmatr1984.BetterBoots.Listeners.DurabilityListener(), this);
 		pm.registerEvents(new me.drkmatr1984.BetterBoots.Listeners.Checkers(), this);
 		if(ConfigAccessor.EnableMetrics == true)
 			initMetrics(this);
 		getServer().getConsoleSender().sendMessage("§F[BetterBoots] Loading BetterBoots, Powered by §5Tussin§F!§r");
+		if(VanishNoPacketCheck()){
+			getServer().getConsoleSender().sendMessage("§F[BetterBoots] §5VanishNoPacket§F detected! Using VanishNoPacket to handle SneakBoots!§r");
+		}
 		getServer().getLogger().info("[BetterBoots] Loaded");
 	}
 	
@@ -59,7 +63,16 @@ public class BetterBoots extends JavaPlugin
 	{
 		Boots.FlightBoots();
 		Boots.SpeedBoots();
+		Boots.SneakBoots();
 	}
+	
+	public static boolean VanishNoPacketCheck()
+    {
+		if (plugin.getServer().getPluginManager().isPluginEnabled("VanishNoPacket")) {
+			return true;
+		}
+		return false;
+    }  
     
 	public void onDisable()
     {

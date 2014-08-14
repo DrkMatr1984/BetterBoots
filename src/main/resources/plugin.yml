@@ -2,6 +2,7 @@ name: BetterBoots
 main: me.drkmatr1984.BetterBoots.BetterBoots
 version: 0.1
 author: Nicolas Shreiner
+softdepend: [VanishNoPacket]
 description: Craft some Tussin powered boots of Awesome! Each Type gives you new Abilities!
 permissions:
     BetterBoots.flightboots.use:

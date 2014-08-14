@@ -28,7 +28,7 @@ public class DurabilityListener implements Listener
 	                    if((p.getEquipment().getBoots().getType().getMaxDurability() - 80) == p.getEquipment().getBoots().getDurability()){
 	                    	   p.sendMessage(p.getDisplayName() + ChatColor.YELLOW + ", Your boots are almost used up!" + ChatColor.RESET);
 	                       }
-	                       if(p.getEquipment().getBoots().getType().getMaxDurability() == p.getEquipment().getBoots().getDurability()){
+	                       if(p.getEquipment().getBoots().getType().getMaxDurability() <= p.getEquipment().getBoots().getDurability()){
 	                    	   if((Checkers.canFlyCheck(p)) && p.isFlying()){
 	                         	 p.setFlying(true);
 	                         	 p.setAllowFlight(true);

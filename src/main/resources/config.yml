@@ -1,7 +1,8 @@
 ##FLIGHTSPEED: Flight speed while wearing FlightBoots. 0.1 Is equivalent to Fly Speed 1 from Essentials. Must be a float(like 0.1,0.2, etc)
 ##Whether or not to use the Built-in Durability function. Set true for durability damage to occur from use, or false for boots that only get damaged from combat as normal
 ##Enable Plugin Metrics for MCStats
-FLIGHTSPEED: 0.1
-SPRINTSPEED: 0.3
-DURABILITY: true  
-ENABLEMETRICS: true
+general:
+  SPRINTSPEED: 0.4
+  FLIGHTSPEED: 0.1
+  ENABLEMETRICS: false
+  DURABILITY: false
