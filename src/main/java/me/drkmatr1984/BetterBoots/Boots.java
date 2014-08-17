@@ -11,8 +11,10 @@ public class Boots {
 	public static ShapedRecipe FlightBootsRecipe = null;
 	public static ShapedRecipe SpeedBootsRecipe = null;
 	public static ShapedRecipe SneakBootsRecipe = null;
+	public static ShapedRecipe IceBootsRecipe = null;
+	public static ShapedRecipe HeavyBootsRecipe = null;
 
-	//Initialize FlightBoots
+	//Initialize FlightBoots Recipe
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public static void FlightBoots()
 	{
@@ -35,7 +37,7 @@ public class Boots {
 		BetterBoots.plugin.getServer().addRecipe(FlightBootsRecipe);
 	}
 	
-	//Initialize SpeedBoots
+	//Initialize SpeedBoots Recipe
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public static void SpeedBoots()
 	{
@@ -44,7 +46,7 @@ public class Boots {
 		String speedLore = Speed.toString();
 		ItemStack db = new ItemStack((Material.GOLD_BOOTS));
 		ItemMeta meta = db.getItemMeta();
-		meta.setDisplayName("§6SpeedBoots");
+		meta.setDisplayName("§ASpeedBoots");
 		ArrayList lore = new ArrayList();
 		lore.add(0,"§FRun to the Hills!");
 		lore.add(1,"§FSprint Speed : " + ("§F" + speedLore));
@@ -58,16 +60,17 @@ public class Boots {
 		BetterBoots.plugin.getServer().addRecipe(SpeedBootsRecipe);
 	}	
 	
-	//Initialize SpeedBoots
+	//Initialize SneakBoots Recipe
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public static void SneakBoots()
 	{
 		ItemStack db = new ItemStack((Material.LEATHER_BOOTS));
 		ItemMeta meta = db.getItemMeta();
-		meta.setDisplayName("§6SneakBoots");
+		meta.setDisplayName("§7SneakBoots");
 		ArrayList lore = new ArrayList();
-		lore.add(0,"§FFrom the Shadows...");
-		lore.add(1,"§FHold shift(sneak) to become invisible while wearing these boots.");
+		lore.add(0,"§FFrom the §7Shadows§F...");
+		lore.add(1,"§FHold SHIFT(sneak) to become invisible");
+		lore.add(2,"§FWhile wearing these boots.");
 		meta.setLore(lore);
 		db.setItemMeta(meta);
 		SneakBootsRecipe = new ShapedRecipe(new org.bukkit.inventory.ItemStack(db));
@@ -76,7 +79,49 @@ public class Boots {
 		SneakBootsRecipe.setIngredient('B', Material.LEATHER_BOOTS);
 		SneakBootsRecipe.setIngredient('C', Material.ENDER_PEARL);
 		BetterBoots.plugin.getServer().addRecipe(SneakBootsRecipe);
-	}	
+	}
+	
+	//Initialize IceBoots Recipe
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public static void IceBoots()
+	{
+		ItemStack db = new ItemStack((Material.CHAINMAIL_BOOTS));
+		ItemMeta meta = db.getItemMeta();
+		meta.setDisplayName("§9IceBoots");
+		ArrayList lore = new ArrayList();
+		lore.add(0,"§FWho's got cold feet now?");
+		lore.add(1,"§FThese boots allow you to walk on water by changing the");
+		lore.add(2,"§FThe water beneath your feet to §9ice§F.");
+		meta.setLore(lore);
+		db.setItemMeta(meta);
+		IceBootsRecipe = new ShapedRecipe(new org.bukkit.inventory.ItemStack(db));
+		IceBootsRecipe.shape(new String[] { "ACA", "ABA", "ACA" });
+		IceBootsRecipe.setIngredient('A', Material.SNOW_BALL);
+		IceBootsRecipe.setIngredient('B', Material.CHAINMAIL_BOOTS);
+		IceBootsRecipe.setIngredient('C', Material.ENDER_PEARL);
+		BetterBoots.plugin.getServer().addRecipe(IceBootsRecipe);
+	}
+	
+	//Initialize HeavyBoots Recipe
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public static void HeavyBoots()
+	{
+		ItemStack db = new ItemStack((Material.IRON_BOOTS));
+		ItemMeta meta = db.getItemMeta();
+		meta.setDisplayName("§8HeavyBoots");
+		ArrayList lore = new ArrayList();
+		lore.add(0,"§FJust §Otry§R §Fto knock me over in these...");
+		lore.add(1,"§FThese boots allow you to ignore");
+		lore.add(2,"§8Knockback §Feffects.");
+		meta.setLore(lore);
+		db.setItemMeta(meta);
+		HeavyBootsRecipe = new ShapedRecipe(new org.bukkit.inventory.ItemStack(db));
+		HeavyBootsRecipe.shape(new String[] { "ACA", "ABA", "ACA" });
+		HeavyBootsRecipe.setIngredient('A', Material.IRON_INGOT);
+		HeavyBootsRecipe.setIngredient('B', Material.IRON_BOOTS);
+		HeavyBootsRecipe.setIngredient('C', Material.ENDER_PEARL);
+		BetterBoots.plugin.getServer().addRecipe(HeavyBootsRecipe);
+	}
 	
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public static ItemStack getFlightBoots()
@@ -121,6 +166,36 @@ public class Boots {
 		ArrayList lore = new ArrayList();
 		lore.add(0,"§FFrom the Shadows...");
 		lore.add(1,"§FHold shift(sneak) to become invisible while wearing these boots.");
+		meta.setLore(lore);
+		db.setItemMeta(meta);
+		return db;
+	}
+	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public static ItemStack getIceBoots()
+	{
+		ItemStack db = new ItemStack((Material.CHAINMAIL_BOOTS));
+		ItemMeta meta = db.getItemMeta();
+		meta.setDisplayName("§9IceBoots");
+		ArrayList lore = new ArrayList();
+		lore.add(0,"§FWho's got cold feet now?");
+		lore.add(1,"§FThese boots allow you to walk on water by changing the");
+		lore.add(2,"§FThe water beneath your feet to §9ice§F.");
+		meta.setLore(lore);
+		db.setItemMeta(meta);
+		return db;
+	}
+	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public static ItemStack getHeavyBoots()
+	{
+		ItemStack db = new ItemStack((Material.IRON_BOOTS));
+		ItemMeta meta = db.getItemMeta();
+		meta.setDisplayName("§8HeavyBoots");
+		ArrayList lore = new ArrayList();
+		lore.add(0,"§FJust §Otry§R §Fto knock me over in these...");
+		lore.add(1,"§FThese boots allow you to ignore");
+		lore.add(2,"§8Knockback §Feffects.");
 		meta.setLore(lore);
 		db.setItemMeta(meta);
 		return db;

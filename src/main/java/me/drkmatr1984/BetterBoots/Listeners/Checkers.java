@@ -11,6 +11,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.Recipe;
 import org.bukkit.inventory.ShapedRecipe;
@@ -21,15 +22,15 @@ public class Checkers implements Listener
 
 	   //Checks for the existence of BetterBoots, then attempts to remove them on PvP action if NoBootsPVP: true is specified in the configs
        @EventHandler
-       public void pvpChecker(EntityDamageByEntityEvent e){
-    	   if (e.getEntity() instanceof Player && e instanceof EntityDamageByEntityEvent && ((EntityDamageByEntityEvent)e).getDamager() instanceof Player) {
+       public void pvpChecker(EntityDamageEvent e){
+    	   if (e.getEntity() instanceof Player && (e instanceof EntityDamageByEntityEvent && ((EntityDamageByEntityEvent)e).getDamager() instanceof Player)) {
     		  // pvp damage occurred
     	   }
        }
        
        //Checks if player already has permission to fly
        public static boolean canFlyCheck(Player player){
-    	   if((player.hasPermission("essentials.fly")) || (player.getGameMode() == GameMode.CREATIVE)){
+    	   if((player.hasPermission("essentials.fly")) || (player.getGameMode() == GameMode.CREATIVE) || (player.hasPermission("fly.use")) || (player.hasPermission("commandbook.flight.toggle"))){
     		   return true;
     	   }else
     	   return false;
@@ -44,6 +45,12 @@ public class Checkers implements Listener
     		   return true;
     	   }
     	   if(isSneakBoots(is)){
+    		   return true;
+    	   }
+    	   if(isIceBoots(is)){
+    		   return true;
+    	   }
+    	   if(isHeavyBoots(is)){
     		   return true;
     	   }
    	   return false;
@@ -90,7 +97,7 @@ public class Checkers implements Listener
    	   
    	   //Checks if boots are FlightBoots
    	   public static boolean isFlightBoots(ItemStack is){
-    	   if ((is != null) && (is.getType() != Material.AIR)){
+    	   if (is != null){
     		   if(is.getType() != Material.AIR){
     			    if(is.hasItemMeta()){
     			    	if(is.getItemMeta().hasDisplayName()){
@@ -108,7 +115,7 @@ public class Checkers implements Listener
     
    	   //Checks if boots are SpeedBoots
        public static boolean isSpeedBoots(ItemStack is){
-    	   if ((is != null) && (is.getType() != Material.AIR)){
+    	   if (is != null){
     		   if(is.getType() != Material.AIR){
     			    if(is.hasItemMeta()){
     			    	if(is.getItemMeta().hasDisplayName()){
@@ -126,7 +133,7 @@ public class Checkers implements Listener
        
        //Checks if boots are SneakBoots
        public static boolean isSneakBoots(ItemStack is){
-    	   if ((is != null) && (is.getType() != Material.AIR)){
+    	   if (is != null){
     		   if(is.getType() != Material.AIR){
     			    if(is.hasItemMeta()){
     			    	if(is.getItemMeta().hasDisplayName()){
@@ -141,5 +148,40 @@ public class Checkers implements Listener
     	   }   
     	   return false;
        }
+       
+     //Checks if boots are IceBoots
+     public static boolean isIceBoots(ItemStack is){
+    	 if (is != null){
+    		 if(is.getType() != Material.AIR){
+    			  if(is.hasItemMeta()){
+    				  if(is.getItemMeta().hasDisplayName()){
+    					  if(is.getItemMeta().getLore() != null){
+    						  if((is.getItemMeta().getLore().equals(Boots.getIceBoots().getItemMeta().getLore())) && (is.getItemMeta().getDisplayName().equals(Boots.getIceBoots().getItemMeta().getDisplayName()))){
+    							  return true;
+    						  }
+    					  }
+    				  }
+    			  }
+    		 }
+    	 }   
+    	   return false;
+     }
+     
+     public static boolean isHeavyBoots(ItemStack is){
+    	 if (is != null){
+    		 if(is.getType() != Material.AIR){
+    			  if(is.hasItemMeta()){
+    				  if(is.getItemMeta().hasDisplayName()){
+    					  if(is.getItemMeta().getLore() != null){
+    						  if((is.getItemMeta().getLore().equals(Boots.getHeavyBoots().getItemMeta().getLore())) && (is.getItemMeta().getDisplayName().equals(Boots.getHeavyBoots().getItemMeta().getDisplayName()))){
+    							  return true;
+    						  }
+    					  }
+    				  }
+    			  }
+    		 }
+    	 }   
+    	   return false;
+     }
 }       
        

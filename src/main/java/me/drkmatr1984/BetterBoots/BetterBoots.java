@@ -23,16 +23,14 @@ public class BetterBoots extends JavaPlugin
 		plugin = this;
 		initConfig();
 		initBootsRecipes();
-		pm.registerEvents(new me.drkmatr1984.BetterBoots.Listeners.FlightListener(), this);
-		pm.registerEvents(new me.drkmatr1984.BetterBoots.Listeners.SprintListener(), this);
-		pm.registerEvents(new me.drkmatr1984.BetterBoots.Listeners.SneakListener(), this);
-		pm.registerEvents(new me.drkmatr1984.BetterBoots.Listeners.DurabilityListener(), this);
-		pm.registerEvents(new me.drkmatr1984.BetterBoots.Listeners.Checkers(), this);
-		if(ConfigAccessor.EnableMetrics == true)
-			initMetrics(this);
+		initListeners();
 		getServer().getConsoleSender().sendMessage("§F[BetterBoots] Loading BetterBoots, Powered by §5Tussin§F!§r");
+		if(ConfigAccessor.EnableMetrics == true){
+			initMetrics(this);
+			getServer().getConsoleSender().sendMessage("§F[BetterBoots] Plugin Metrics Enabled. Set 'ENABLEMETRICS' in Config.yml to false to disable this");
+		}
 		if(VanishNoPacketCheck()){
-			getServer().getConsoleSender().sendMessage("§F[BetterBoots] §5VanishNoPacket§F detected! Using VanishNoPacket to handle SneakBoots!§r");
+			getServer().getConsoleSender().sendMessage("§F[BetterBoots] §5VanishNoPacket§F detected! Using §5VanishNoPacket§F to handle SneakBoots!§r");
 		}
 		getServer().getLogger().info("[BetterBoots] Loaded");
 	}
@@ -64,6 +62,19 @@ public class BetterBoots extends JavaPlugin
 		Boots.FlightBoots();
 		Boots.SpeedBoots();
 		Boots.SneakBoots();
+		Boots.IceBoots();
+		Boots.HeavyBoots();
+	}
+	
+	private void initListeners()
+	{
+		pm.registerEvents(new me.drkmatr1984.BetterBoots.Listeners.FlightListener(), this);
+		pm.registerEvents(new me.drkmatr1984.BetterBoots.Listeners.SprintListener(), this);
+		pm.registerEvents(new me.drkmatr1984.BetterBoots.Listeners.SneakListener(), this);
+		pm.registerEvents(new me.drkmatr1984.BetterBoots.Listeners.IceListener(), this);
+		pm.registerEvents(new me.drkmatr1984.BetterBoots.Listeners.HeavyListener(), this);
+		pm.registerEvents(new me.drkmatr1984.BetterBoots.Listeners.DurabilityListener(), this);
+		pm.registerEvents(new me.drkmatr1984.BetterBoots.Listeners.Checkers(), this);
 	}
 	
 	public static boolean VanishNoPacketCheck()

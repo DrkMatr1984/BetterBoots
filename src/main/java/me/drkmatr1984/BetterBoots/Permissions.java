@@ -14,7 +14,6 @@ public class Permissions
 	public static final Permission canCraftSneakBoots = new Permission(Strings.SNEAK_BOOTS_CRAFT);
 	public static final Permission canCraftHeavyBoots = new Permission(Strings.HEAVY_BOOTS_CRAFT);
 	public static final Permission canCraftIceBoots = new Permission(Strings.ICE_BOOTS_CRAFT);
-	public static final Permission canSeeSneakBoots = new Permission(Strings.SNEAK_BOOTS_SEE);
 
 	public class Strings {
 		public static final String FLIGHT_BOOTS = "BetterBoots.flightboots.use";
@@ -27,6 +26,5 @@ public class Permissions
 		public static final String SNEAK_BOOTS_CRAFT = "BetterBoots.sneakboots.craft";
 		public static final String HEAVY_BOOTS_CRAFT = "BetterBoots.heavyboots.craft";
 		public static final String ICE_BOOTS_CRAFT = "BetterBoots.iceboots.craft";
-		public static final String SNEAK_BOOTS_SEE = "BetterBoots.sneakboots.see";
 	}
 }
