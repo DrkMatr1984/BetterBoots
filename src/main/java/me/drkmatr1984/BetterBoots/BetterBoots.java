@@ -2,9 +2,13 @@ package me.drkmatr1984.BetterBoots;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.util.logging.Logger;
 
+import me.drkmatr1984.BetterBoots.Util.GlowEnchant;
+
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -15,6 +19,7 @@ public class BetterBoots extends JavaPlugin
     public static BetterBoots plugin;
 	public static FileConfiguration c;
 	public static File language;
+	private static Enchantment glow = new GlowEnchant(69);
 	private Logger log = getLogger();
 	PluginManager pm = getServer().getPluginManager();
 
@@ -24,6 +29,8 @@ public class BetterBoots extends JavaPlugin
 		initConfig();
 		initBootsRecipes();
 		initListeners();
+		if(!(registerNewEnchantment()))
+			getServer().getConsoleSender().sendMessage("§4GLOW NOT WORKING");
 		getServer().getConsoleSender().sendMessage("§F[BetterBoots] Loading BetterBoots, Powered by §5Tussin§F!§r");
 		if(ConfigAccessor.EnableMetrics == true){
 			initMetrics(this);
@@ -75,6 +82,7 @@ public class BetterBoots extends JavaPlugin
 		pm.registerEvents(new me.drkmatr1984.BetterBoots.Listeners.HeavyListener(), this);
 		pm.registerEvents(new me.drkmatr1984.BetterBoots.Listeners.DurabilityListener(), this);
 		pm.registerEvents(new me.drkmatr1984.BetterBoots.Listeners.Checkers(), this);
+		pm.registerEvents(new me.drkmatr1984.BetterBoots.Listeners.CraftPermListener(), this);
 	}
 	
 	public static boolean VanishNoPacketCheck()
@@ -83,7 +91,27 @@ public class BetterBoots extends JavaPlugin
 			return true;
 		}
 		return false;
-    }  
+    }
+	
+	public static boolean registerNewEnchantment() {
+		try {
+			Field f = Enchantment.class.getDeclaredField("acceptingNew");
+			f.setAccessible(true);
+			f.set(null, true);
+			try {
+				Enchantment.registerEnchantment(glow);
+				return true;
+			} catch (IllegalArgumentException e) {
+
+			}
+		} catch (Exception e) {
+		}
+		return false;
+	}
+	
+	public static Enchantment getGlow(){
+		return glow;
+	}
     
 	public void onDisable()
     {

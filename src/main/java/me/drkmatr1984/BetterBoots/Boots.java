@@ -1,6 +1,8 @@
 package me.drkmatr1984.BetterBoots;
 
 import java.util.ArrayList;
+import java.util.List;
+
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.ShapedRecipe;
@@ -22,11 +24,13 @@ public class Boots {
 		Speed = Speed * 10;
 		String speedLore = Speed.toString();
 		ItemStack db = new ItemStack((Material.DIAMOND_BOOTS));
+		db = getTrueOutput(db);
 		ItemMeta meta = db.getItemMeta();
 		meta.setDisplayName("§6FlightBoots");
 		ArrayList lore = new ArrayList();
-		lore.add(0,"§FPop these babies on and Fly like Hermes!");
-		lore.add(1,"§FFlight Speed : " + ("§F" + speedLore));
+		lore.add(0,"§FPop these babies on and §6Fly§F");
+		lore.add(1,"§Flike Hermes!");
+		lore.add(2,"§FFlight Speed : " + ("§F" + speedLore));
 		meta.setLore(lore);
 		db.setItemMeta(meta);
 		FlightBootsRecipe = new ShapedRecipe(new org.bukkit.inventory.ItemStack(db));
@@ -45,10 +49,11 @@ public class Boots {
 		Speed = Speed * 10;
 		String speedLore = Speed.toString();
 		ItemStack db = new ItemStack((Material.GOLD_BOOTS));
+		db = getTrueOutput(db);
 		ItemMeta meta = db.getItemMeta();
 		meta.setDisplayName("§ASpeedBoots");
 		ArrayList lore = new ArrayList();
-		lore.add(0,"§FRun to the Hills!");
+		lore.add(0,"§ARun§F to the Hills!");
 		lore.add(1,"§FSprint Speed : " + ("§F" + speedLore));
 		meta.setLore(lore);
 		db.setItemMeta(meta);
@@ -65,17 +70,18 @@ public class Boots {
 	public static void SneakBoots()
 	{
 		ItemStack db = new ItemStack((Material.LEATHER_BOOTS));
+		db = getTrueOutput(db);
 		ItemMeta meta = db.getItemMeta();
 		meta.setDisplayName("§7SneakBoots");
 		ArrayList lore = new ArrayList();
 		lore.add(0,"§FFrom the §7Shadows§F...");
-		lore.add(1,"§FHold SHIFT(sneak) to become invisible");
+		lore.add(1,"§FHold SHIFT§7(sneak)§F to become invisible");
 		lore.add(2,"§FWhile wearing these boots.");
 		meta.setLore(lore);
 		db.setItemMeta(meta);
 		SneakBootsRecipe = new ShapedRecipe(new org.bukkit.inventory.ItemStack(db));
 		SneakBootsRecipe.shape(new String[] { "ACA", "ABA", "ACA" });
-		SneakBootsRecipe.setIngredient('A', Material.NETHER_WARTS);
+		SneakBootsRecipe.setIngredient('A', Material.NETHER_STALK);
 		SneakBootsRecipe.setIngredient('B', Material.LEATHER_BOOTS);
 		SneakBootsRecipe.setIngredient('C', Material.ENDER_PEARL);
 		BetterBoots.plugin.getServer().addRecipe(SneakBootsRecipe);
@@ -86,6 +92,7 @@ public class Boots {
 	public static void IceBoots()
 	{
 		ItemStack db = new ItemStack((Material.CHAINMAIL_BOOTS));
+		db = getTrueOutput(db);
 		ItemMeta meta = db.getItemMeta();
 		meta.setDisplayName("§9IceBoots");
 		ArrayList lore = new ArrayList();
@@ -107,6 +114,7 @@ public class Boots {
 	public static void HeavyBoots()
 	{
 		ItemStack db = new ItemStack((Material.IRON_BOOTS));
+		db = getTrueOutput(db);
 		ItemMeta meta = db.getItemMeta();
 		meta.setDisplayName("§8HeavyBoots");
 		ArrayList lore = new ArrayList();
@@ -130,11 +138,13 @@ public class Boots {
 		Speed = Speed * 10;
 		String speedLore = Speed.toString();
 		ItemStack db = new ItemStack((Material.DIAMOND_BOOTS));
+		db = getTrueOutput(db);
 		ItemMeta meta = db.getItemMeta();
 		meta.setDisplayName("§6FlightBoots");
 		ArrayList lore = new ArrayList();
-		lore.add(0,"§FPop these babies on and Fly like Hermes!");
-		lore.add(1,"§FFlight Speed : " + ("§F" + speedLore));
+		lore.add(0,"§FPop these babies on and §6Fly§F");
+		lore.add(1,"§Flike Hermes!");
+		lore.add(2,"§FFlight Speed : " + ("§F" + speedLore));
 		meta.setLore(lore);
 		db.setItemMeta(meta);
 		return db;
@@ -147,10 +157,11 @@ public class Boots {
 		Speed = Speed * 10;
 		String speedLore = Speed.toString();
 		ItemStack db = new ItemStack((Material.GOLD_BOOTS));
+		db = getTrueOutput(db);
 		ItemMeta meta = db.getItemMeta();
-		meta.setDisplayName("§6SpeedBoots");
+		meta.setDisplayName("§ASpeedBoots");
 		ArrayList lore = new ArrayList();
-		lore.add(0,"§FRun to the Hills!");
+		lore.add(0,"§ARun§F to the Hills!");
 		lore.add(1,"§FSprint Speed : " + ("§F" + speedLore));
 		meta.setLore(lore);
 		db.setItemMeta(meta);
@@ -161,11 +172,13 @@ public class Boots {
 	public static ItemStack getSneakBoots()
 	{
 		ItemStack db = new ItemStack((Material.LEATHER_BOOTS));
+		db = getTrueOutput(db);
 		ItemMeta meta = db.getItemMeta();
-		meta.setDisplayName("§6SneakBoots");
+		meta.setDisplayName("§7SneakBoots");
 		ArrayList lore = new ArrayList();
-		lore.add(0,"§FFrom the Shadows...");
-		lore.add(1,"§FHold shift(sneak) to become invisible while wearing these boots.");
+		lore.add(0,"§FFrom the §7Shadows§F...");
+		lore.add(1,"§FHold SHIFT§7(sneak)§F to become invisible");
+		lore.add(2,"§FWhile wearing these boots.");
 		meta.setLore(lore);
 		db.setItemMeta(meta);
 		return db;
@@ -175,6 +188,7 @@ public class Boots {
 	public static ItemStack getIceBoots()
 	{
 		ItemStack db = new ItemStack((Material.CHAINMAIL_BOOTS));
+		db = getTrueOutput(db);
 		ItemMeta meta = db.getItemMeta();
 		meta.setDisplayName("§9IceBoots");
 		ArrayList lore = new ArrayList();
@@ -190,6 +204,7 @@ public class Boots {
 	public static ItemStack getHeavyBoots()
 	{
 		ItemStack db = new ItemStack((Material.IRON_BOOTS));
+		db = getTrueOutput(db);
 		ItemMeta meta = db.getItemMeta();
 		meta.setDisplayName("§8HeavyBoots");
 		ArrayList lore = new ArrayList();
@@ -201,4 +216,16 @@ public class Boots {
 		return db;
 	}
 	
+	public static ItemStack getTrueOutput(ItemStack output) {
+		ItemStack out = output.clone();
+		ItemMeta meta = out.getItemMeta();
+		String name = out.getItemMeta().getDisplayName();
+		List<String> lore = out.getItemMeta().getLore();
+		meta.setDisplayName(name);
+		meta.setLore(lore);
+		out.setItemMeta(meta);
+		out.addEnchantment(BetterBoots.getGlow(), 1);
+		return out;
+	}
+
 }

@@ -5,6 +5,7 @@ import me.drkmatr1984.BetterBoots.Permissions;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.inventory.ItemStack;
 
@@ -33,6 +34,15 @@ public class FlightListener implements Listener
 					p.setFlying(false);
 				}
 		}	
+	}
+	
+	@EventHandler
+	public void playerDeathSprint(PlayerDeathEvent e){
+		if(e.getEntity() instanceof Player){
+			Player p = (Player)e.getEntity();
+			p.setAllowFlight(false);
+			p.setFlying(false);
+		}
 	}
 }	
 

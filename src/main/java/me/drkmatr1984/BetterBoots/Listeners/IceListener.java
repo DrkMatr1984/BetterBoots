@@ -1,5 +1,6 @@
 package me.drkmatr1984.BetterBoots.Listeners;
 
+import me.drkmatr1984.BetterBoots.BetterBoots;
 import me.drkmatr1984.BetterBoots.Permissions;
 
 import org.bukkit.Material;
@@ -21,15 +22,22 @@ public class IceListener implements Listener
 		ItemStack is = p.getEquipment().getBoots();
 		if(Checkers.isBoots(is)){
 			if((Checkers.isIceBoots(is)) && (p.hasPermission(Permissions.canHasIceBoots))){
-				Block block = p.getLocation().getBlock().getRelative(BlockFace.DOWN);
+				final Block block = p.getLocation().getBlock().getRelative(BlockFace.DOWN);
 				BlockFace face = yawToFace(p.getLocation().getYaw());
-				Block nextBlock = p.getLocation().getBlock().getRelative(face);
-				nextBlock = nextBlock.getRelative(BlockFace.DOWN);
+				final Block nextBlock = p.getLocation().getBlock().getRelative(face);
 				if(block.isLiquid() && (!block.isEmpty())) {
-					block.setType(Material.ICE);
+					BetterBoots.plugin.getServer().getScheduler().scheduleSyncDelayedTask(BetterBoots.plugin, new Runnable() {
+    					public void run() {
+    						block.setType(Material.ICE);
+    					}
+    				}, 1L);	
 				}
 				if(nextBlock.isLiquid() && (!nextBlock.isEmpty())) {
-					nextBlock.setType(Material.ICE);
+					BetterBoots.plugin.getServer().getScheduler().scheduleSyncDelayedTask(BetterBoots.plugin, new Runnable() {
+    					public void run() {
+    						block.setType(Material.ICE);
+    					}
+    				}, 1L);
 				}
 			}
 		}
